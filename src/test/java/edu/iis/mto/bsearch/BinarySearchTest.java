@@ -5,6 +5,8 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -59,6 +61,15 @@ public class BinarySearchTest {
         resultIndex = sut.getPosition();
 
         assertThat(3, is(resultIndex));
+    }
+
+    @Test
+    public void shouldNotModifySeguence() {
+        int original[] = {4, 5, 6, 7, 9};
+        int copy[] = Arrays.copyOf(original, original.length);
+        SearchResult sut = BinarySearch.search(10, original);
+
+        assertThat(copy, is(original));
     }
 
     // Order: key, expected element
