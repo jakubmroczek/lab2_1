@@ -31,6 +31,36 @@ public class BinarySearchTest {
         assertThat(expectedIndex, is(resultIndex));
     }
 
+    // Moglby byc sparametryzowany, ale w jakis sposob trzeba polozyc nacisk na corner case
+    @Test
+    public void shouldReturnProperIndexForElementNextToTheCenter() {
+        int[] seq = {11, 25, 36, 49, 50};
+        SearchResult sut = BinarySearch.search(25, seq);
+
+        int resultIndex = sut.getPosition();
+        assertThat(1, is(resultIndex));
+
+        sut = BinarySearch.search(49, seq);
+        resultIndex = sut.getPosition();
+
+        assertThat(3, is(resultIndex));
+    }
+
+    // Moglby byc sparametryzowany, ale w jakis sposob trzeba polozyc nacisk na corner case
+    @Test
+    public void shouldReturnProperIndexForBorderElements() {
+        int[] seq = {-1, 4, 7, 8};
+        SearchResult sut = BinarySearch.search(-1, seq);
+
+        int resultIndex = sut.getPosition();
+        assertThat(0, is(resultIndex));
+
+        sut = BinarySearch.search(8, seq);
+        resultIndex = sut.getPosition();
+
+        assertThat(3, is(resultIndex));
+    }
+
     // Order: key, expected element
     private Object[] oneSetUp() {
         return new Object[] {
