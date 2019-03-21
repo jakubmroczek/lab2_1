@@ -31,7 +31,7 @@ public class BinarySearchTest {
     private Object[] oneSetUp() {
         return new Object[] {
             new Object[] {5, 0},
-            new Object[] {5, -1}
+            new Object[] {6, -1}
         };
     }
 
