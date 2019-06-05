@@ -27,7 +27,7 @@ public class BinarySearchTest {
     @Test
     @Parameters(method = "multipleSetUp")
     public void shouldReturnProperIndexInNumerousCollection(int key, int expectedIndex) {
-        int[] seq = {1, 2, 3, 4, 5};
+        int[] seq = {-100, -4, 3, 49, 1111};
         SearchResult sut = BinarySearch.search(key, seq);
         int resultIndex = sut.getPosition();
         assertThat(expectedIndex, is(resultIndex));
@@ -36,8 +36,8 @@ public class BinarySearchTest {
     // Moglby byc sparametryzowany, ale w jakis sposob trzeba polozyc nacisk na corner case
     @Test
     public void shouldReturnProperIndexForElementNextToTheCenter() {
-        int[] seq = {11, 25, 36, 49, 50};
-        SearchResult sut = BinarySearch.search(25, seq);
+        int[] seq = {-11, -2, 36, 49, 50};
+        SearchResult sut = BinarySearch.search(-2, seq);
 
         int resultIndex = sut.getPosition();
         assertThat(1, is(resultIndex));
@@ -51,13 +51,13 @@ public class BinarySearchTest {
     // Moglby byc sparametryzowany, ale w jakis sposob trzeba polozyc nacisk na corner case
     @Test
     public void shouldReturnProperIndexForBorderElements() {
-        int[] seq = {-1, 4, 7, 8};
-        SearchResult sut = BinarySearch.search(-1, seq);
+        int[] seq = {-14, 4, 7, 81};
+        SearchResult sut = BinarySearch.search(-14, seq);
 
         int resultIndex = sut.getPosition();
         assertThat(0, is(resultIndex));
 
-        sut = BinarySearch.search(8, seq);
+        sut = BinarySearch.search(81, seq);
         resultIndex = sut.getPosition();
 
         assertThat(3, is(resultIndex));
@@ -65,14 +65,14 @@ public class BinarySearchTest {
 
     @Test
     public void shouldNotModifySeguence() {
-        int original[] = {4, 5, 6, 7, 9};
+        int original[] = {-10, 50, 61, 77, 91};
         int copy[] = Arrays.copyOf(original, original.length);
         SearchResult sut = BinarySearch.search(10, original);
 
         assertThat(copy, is(original));
     }
 
-    // Order: key, expected element
+    // Order: key, expected index
     private Object[] oneSetUp() {
         return new Object[] {
             new Object[] {5, 0},
@@ -80,11 +80,11 @@ public class BinarySearchTest {
         };
     }
 
-    // Order: key, expected element
+    // Order: key, expected index
     private Object[] multipleSetUp() {
         return new Object[] {
-                new Object[] {1, 0},
-                new Object[] {5, 4},
+                new Object[] {-100, 0},
+                new Object[] {1111, 4},
                 new Object[] {3, 2},
                 new Object[] {-1, ELEMENT_NOT_PRESENT}
         };
